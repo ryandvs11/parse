@@ -1,0 +1,38 @@
+//
+//  ChatCell.swift
+//  parseChatP2
+//
+//  Created by Ryan Davis on 9/29/18.
+//  Copyright © 2018 Ryan Davis. All rights reserved.
+//
+
+import UIKit
+import Parse
+
+class ChatCell: UITableViewCell {
+    
+    @IBOutlet weak var username: UILabel!
+    
+    @IBOutlet weak var textmessages: UILabel!
+    
+    
+    var messages: PFObject!{
+        didSet{
+            textmessages.text = messages.object(forKey: "text") as? String
+            let user = messages.object(forKey: "user") as? PFUser
+            let username = user?.username
+            self.username.text = username
+        }
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
